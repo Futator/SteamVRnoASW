@@ -6,6 +6,7 @@ namespace SteamVRnoASW
 {
     public class SteamVRNoAsw
     {
+        //create the command file for the oculus CLI
         public static void ASWCommandFile()
         {
             StreamWriter sw = new StreamWriter(".\\asw_off.txt");
@@ -24,16 +25,16 @@ namespace SteamVRnoASW
                 oculusPath = localKey.GetValue("InstallLocation").ToString();
             }
             string cliPath = oculusPath + @"Support\oculus-diagnostics\OculusDebugToolCLI.exe";
-            Console.WriteLine(cliPath);
             System.Diagnostics.Process.Start(cliPath, "/C -f asw_off.txt");
         }
         public static void Main(string[] args)
         {
             ASWCommandFile();
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(1000);
             GetCLIPath();
+            System.Threading.Thread.Sleep(1000);
             File.Delete(".\\asw_off.txt");
-            // System.Diagnostics.Process.Start("cmd.exe", "/C start steam://launch/250820");
+            System.Diagnostics.Process.Start("cmd.exe", "/C start steam://launch/250820");
         }
     }
 }
